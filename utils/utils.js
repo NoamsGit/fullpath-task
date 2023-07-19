@@ -1,4 +1,4 @@
-const { mapper } = require("../constants");
+const { mapper, PUNCTUATION } = require("../constants");
 
 module.exports.sortEnglishWordsByHebrewAlphabet = (text) => {
     if (typeof text !== 'string') {
@@ -7,7 +7,7 @@ module.exports.sortEnglishWordsByHebrewAlphabet = (text) => {
     return cleanText(text).split(" ").sort(handleSort).join(" ")
 }
 
-const cleanText = (text) => text.replace(/,\n/g, " ").replace(/,/g, "") // replace symbols ",\n" with " " and then replace "," with ""
+const cleanText = (text) => text.replace(PUNCTUATION, "")
 
 const charToValue = (char) => char ? mapper[char.toUpperCase()] : -1
 
